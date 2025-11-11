@@ -29,17 +29,19 @@ export function ModelsMenu({ selectedModel, onModelChange }: ModelsMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">{MODEL_OPTIONS[selectedModel]}</Button>
+        <Button variant="hapticBubblyOutline" size={"haptic-bubbly"}>
+          {MODEL_OPTIONS[selectedModel]}
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56" bubbly>
         <DropdownMenuLabel>Choose Model</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator bubbly />
         <DropdownMenuRadioGroup
           value={selectedModel}
           onValueChange={(value) => onModelChange(value as ModelType)}
         >
           {Object.entries(MODEL_OPTIONS).map(([id, name]) => (
-            <DropdownMenuRadioItem key={id} value={id}>
+            <DropdownMenuRadioItem bubbly key={id} value={id}>
               {name}
             </DropdownMenuRadioItem>
           ))}

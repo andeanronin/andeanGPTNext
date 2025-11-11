@@ -33,7 +33,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-emerald-200">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="h-screen py-4 min-w-1/2 display flex flex-col items-center ">
         <div className="flex flex-row justify-between w-full px-10">
           <h1

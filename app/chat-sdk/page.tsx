@@ -12,7 +12,7 @@ export default function ChatSdk() {
         <h1
           className={`text-3xl font-extralight text-black ${bitcountPropSingleInk.className}`}
         >
-          chat - fast sdk
+          chat - ai sdk
         </h1>
       </div>
     </div>

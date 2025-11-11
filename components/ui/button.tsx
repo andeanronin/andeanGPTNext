@@ -31,6 +31,22 @@ const buttonVariants = cva(
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 rounded-full",
         "link-bubbly":
           "text-primary underline-offset-4 hover:underline rounded-full",
+        hapticDefault:
+          "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95",
+        hapticOutline:
+          "border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground hover:border-input/80 dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-input/70 cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95",
+        hapticSecondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95",
+        hapticDestructive:
+          "bg-destructive text-white hover:bg-destructive/90 shadow-xs focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95",
+        hapticBubblyDefault:
+          "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 rounded-full",
+        hapticBubblySecondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 rounded-full",
+        hapticBubblyDestructive:
+          "bg-destructive text-white hover:bg-destructive/90 shadow-xs focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 rounded-full",
+        hapticBubblyOutline:
+          "border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground hover:border-input/80 dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-input/70 cursor-pointer transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 rounded-full",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -43,6 +59,7 @@ const buttonVariants = cva(
         "sm-bubbly": "h-9 gap-1.5 px-4 has-[>svg]:px-3",
         "lg-bubbly": "h-12 px-8 has-[>svg]:px-5",
         "icon-bubbly": "size-10",
+        "haptic-bubbly": "px-4 py-2.5 has-[>svg]:px-5",
       },
     },
     defaultVariants: {

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -38,7 +38,6 @@
   --chart-active-dot: #fff;
 }
 
-/* Scope theme to only apply within neobrutalism-scope */
 .neobrutalism-scope {
   @theme inline {
     --color-main: var(--main);
@@ -79,4 +78,4 @@
   .neobrutalism-scope h6 {
     @apply font-heading;
   }
-}
+} */

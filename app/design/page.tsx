@@ -1,6 +1,8 @@
+"use client";
+
 import { Bitcount_Prop_Single_Ink } from "next/font/google";
 import { Button } from "@/components/ui/button";
-import { Button as NeoButton } from "@/components/neobrutalism/button";
+// import { Button as NeoButton } from "@/components/neobrutalism/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
   DropdownMenu,
@@ -10,66 +12,154 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import NeoDropdownMenuDemo from "@/components/neobrutalism/dropdown-menu";
+// import NeoDropdownMenuDemo from "@/components/neobrutalism/dropdown-menu";
+import { ThemeDropdown } from "@/components/theme-dropdown";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
+import { useTheme } from "@/components/theme-provider";
 
-import { NeobrutalismScope } from "@/components/neobrutalism/scope";
+// import { NeobrutalismScope } from "@/components/neobrutalism/scope";
 
 const bitcountPropSingleInk = Bitcount_Prop_Single_Ink({
   weight: "400",
   subsets: ["latin"],
 });
 
-export default function Design() {
+// Section component for better organization
+function ComponentSection({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="flex justify-left min-h-screen py-8 px-10">
-      <div className="flex flex-col gap-6">
-        <h1
-          className={`text-3xl font-extralight text-black ${bitcountPropSingleInk.className}`}
-        >
-          design
-        </h1>
+    <section className="w-full">
+      <h2 className="text-xl font-medium text-foreground mb-6 border-b pb-2">
+        {title}
+      </h2>
+      <div className="space-y-8">{children}</div>
+    </section>
+  );
+}
 
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
-            <Button>Default Button</Button>
+// Demo row component for labeled examples
+function DemoRow({
+  label,
+  description,
+  children,
+}: {
+  label: string;
+  description?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-3">
+      {label && (
+        <div>
+          <h3 className="text-sm font-medium text-foreground">{label}</h3>
+          {description && (
+            <p className="text-xs text-muted-foreground mt-1">{description}</p>
+          )}
+        </div>
+      )}
+      <div className="flex flex-wrap gap-3 items-center">{children}</div>
+    </div>
+  );
+}
+
+export default function Design() {
+  const { isDark, setIsDark } = useTheme();
+  return (
+    <div className="flex justify-center min-h-screen py-10 px-6">
+      <div className="flex flex-col gap-12 w-full max-w-5xl">
+        {/* Header */}
+        <header className="flex flex-col gap-3 pb-4 border-b">
+          <h1
+            className={`text-4xl font-extralight text-foreground ${bitcountPropSingleInk.className}`}
+          >
+            design
+          </h1>
+          <div className="flex items-center gap-4">
+            <ThemeDropdown />
+            <div className="flex items-center gap-2">
+              <Switch
+                id="dark-mode-toggle"
+                checked={isDark}
+                onCheckedChange={setIsDark}
+              />
+              <label
+                htmlFor="dark-mode-toggle"
+                className="text-sm text-muted-foreground"
+              >
+                {isDark ? "Dark" : "Light"} Mode
+              </label>
+            </div>
+          </div>
+        </header>
+
+        {/* Controls Section */}
+        <ComponentSection title="Controls">
+          <DemoRow label="Slider" description="Adjustable value control">
+            <div className="w-full max-w-md">
+              <Slider defaultValue={[33]} max={100} step={1} />
+            </div>
+          </DemoRow>
+        </ComponentSection>
+
+        {/* Standard Buttons */}
+        <ComponentSection title="Buttons">
+          <DemoRow label="Variants" description="Different button styles">
+            <Button>Default</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="destructive">Destructive</Button>
-          </div>
-          <div className="flex gap-4">
             <Button variant="outline">Outline</Button>
             <Button variant="ghost">Ghost</Button>
             <Button variant="link">Link</Button>
-          </div>
-          <div className="flex gap-4 items-center">
+          </DemoRow>
+
+          <DemoRow label="Sizes" description="Different button sizes">
             <Button size="sm">Small</Button>
             <Button size="default">Default</Button>
             <Button size="lg">Large</Button>
-          </div>
+          </DemoRow>
+        </ComponentSection>
 
-          <h2 className="text-xl font-light pt-4">Bubbly Variants</h2>
-          <div className="flex gap-4">
+        {/* Bubbly Buttons */}
+        <ComponentSection title="Bubbly Buttons">
+          <DemoRow
+            label="Variants"
+            description="Bubbly style with playful aesthetics"
+          >
             <Button variant="default-bubbly" size="default-bubbly">
-              Default Bubbly
+              Default
             </Button>
             <Button variant="secondary-bubbly" size="default-bubbly">
-              Secondary Bubbly
+              Secondary
             </Button>
             <Button variant="destructive-bubbly" size="default-bubbly">
-              Destructive Bubbly
+              Destructive
             </Button>
-          </div>
-          <div className="flex gap-4">
             <Button variant="outline-bubbly" size="default-bubbly">
-              Outline Bubbly
+              Outline
             </Button>
             <Button variant="ghost-bubbly" size="default-bubbly">
-              Ghost Bubbly
+              Ghost
             </Button>
             <Button variant="link-bubbly" size="default-bubbly">
-              Link Bubbly
+              Link
             </Button>
-          </div>
-          <div className="flex gap-4 items-center">
+          </DemoRow>
+
+          <DemoRow label="Sizes" description="Bubbly button sizes">
             <Button variant="default-bubbly" size="sm-bubbly">
               Small
             </Button>
@@ -79,18 +169,43 @@ export default function Design() {
             <Button variant="default-bubbly" size="lg-bubbly">
               Large
             </Button>
-          </div>
+          </DemoRow>
+        </ComponentSection>
 
-          {/* Neobrutalism Styles */}
-          <h2 className="text-xl font-light pt-4">Neobrutalistism Variant</h2>
-          <NeobrutalismScope>
-            <NeoButton>Button</NeoButton>
-          </NeobrutalismScope>
-        </div>
+        {/* Haptic Buttons */}
+        <ComponentSection title="Haptic Buttons">
+          <DemoRow
+            label="Standard Haptic"
+            description="Buttons with tactile feedback"
+          >
+            <Button variant="hapticDefault">Primary</Button>
+            <Button variant="hapticSecondary">Secondary</Button>
+            <Button variant="hapticDestructive">Destructive</Button>
+            <Button variant="hapticOutline">Outline</Button>
+          </DemoRow>
 
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-light">Dropdown Menu</h2>
-          <div className="flex gap-4">
+          <DemoRow
+            label="Haptic Bubbly"
+            description="Combined haptic and bubbly styles"
+          >
+            <Button variant="hapticBubblyDefault" size="haptic-bubbly">
+              Primary
+            </Button>
+            <Button variant="hapticBubblySecondary" size="haptic-bubbly">
+              Secondary
+            </Button>
+            <Button variant="hapticBubblyDestructive" size="haptic-bubbly">
+              Destructive
+            </Button>
+            <Button variant="hapticBubblyOutline" size="haptic-bubbly">
+              Outline
+            </Button>
+          </DemoRow>
+        </ComponentSection>
+
+        {/* Dropdown Menus */}
+        <ComponentSection title="Dropdown Menus">
+          <DemoRow label="Standard" description="Classic dropdown menu">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline">Open Menu</Button>
@@ -105,10 +220,9 @@ export default function Design() {
                 <DropdownMenuItem>Log out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
+          </DemoRow>
 
-          <h2 className="text-xl font-light pt-4">Dropdown Menu - Bubbly</h2>
-          <div className="flex gap-2">
+          <DemoRow label="Bubbly" description="Dropdown with bubbly styling">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline-bubbly" size="default-bubbly">
@@ -117,52 +231,59 @@ export default function Design() {
               </DropdownMenuTrigger>
               <DropdownMenuContent bubbly>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator bubbly />
                 <DropdownMenuItem bubbly>Profile</DropdownMenuItem>
                 <DropdownMenuItem bubbly>Settings</DropdownMenuItem>
                 <DropdownMenuItem bubbly>Team</DropdownMenuItem>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator bubbly />
                 <DropdownMenuItem bubbly>Log out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
+          </DemoRow>
+        </ComponentSection>
 
-          <h2 className="text-xl font-light pt-4">
-            Dropdown Menu - Neobrutalism
-          </h2>
-          <div className="flex gap-4">
-            <NeobrutalismScope>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <NeoButton>Open Menu</NeoButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Log out</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </NeobrutalismScope>
-          </div>
-        </div>
-        <div className="flex gap-4">
-          <NeobrutalismScope>
-            <NeoDropdownMenuDemo />
-          </NeobrutalismScope>
-        </div>
-        <div>
-          <h2 className="text-xl font-light">Text Area</h2>
-          <Textarea></Textarea>
-        </div>
+        {/* Textarea */}
+        <ComponentSection title="Text Areas">
+          <DemoRow label="Standard" description="Classic text input area">
+            <div className="w-full max-w-md">
+              <Textarea placeholder="Enter your text here..." />
+            </div>
+          </DemoRow>
 
-        <div>
-          <h2 className="text-xl font-light">Text Area - Bubbly</h2>
-          <Textarea bubbly></Textarea>
-        </div>
+          <DemoRow label="Bubbly" description="Text area with bubbly styling">
+            <div className="w-full max-w-md">
+              <Textarea bubbly placeholder="Enter your text here..." />
+            </div>
+          </DemoRow>
+        </ComponentSection>
+
+        {/* Card */}
+        <ComponentSection title="Cards">
+          <DemoRow
+            label="Card Component"
+            description="Versatile container with theme adaptation"
+          >
+            <Card className="max-w-md">
+              <CardHeader>
+                <CardTitle>Card Title</CardTitle>
+                <CardDescription>
+                  This is a sample card component that adapts to the selected
+                  theme.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Cards are versatile containers that can hold any content. They
+                  automatically adjust their colors based on the active theme.
+                </p>
+              </CardContent>
+              <CardFooter className="gap-2">
+                <Button variant="hapticBubblyOutline">Cancel</Button>
+                <Button variant="hapticBubblyDefault">Save Changes</Button>
+              </CardFooter>
+            </Card>
+          </DemoRow>
+        </ComponentSection>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import {
   // SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,15 +34,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            {/* <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4"> */}
-            {/* <SidebarTrigger className="-ml-1" /> */}
-            {/* </header> */}
-            <div className="flex flex-1 flex-col gap-4">{children}</div>
-          </SidebarInset>
-        </SidebarProvider>
+        <ThemeProvider defaultTheme="default" storageKey="ui-theme">
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              {/* HEADER WOULD GO HERE */}
+              {/* <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4"> */}
+              {/* <SidebarTrigger className="-ml-1" /> */}
+              {/* </header> */}
+              <div className="flex flex-1 flex-col gap-4">{children}</div>
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
