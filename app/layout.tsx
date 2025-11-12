@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { FloatingNavDemo } from "./hello/floating-navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
       >
         <ThemeProvider defaultTheme="default" storageKey="ui-theme">
           <SidebarProvider>
+            <FloatingNavDemo></FloatingNavDemo>
             <AppSidebar />
             <SidebarInset>
               {/* HEADER WOULD GO HERE */}

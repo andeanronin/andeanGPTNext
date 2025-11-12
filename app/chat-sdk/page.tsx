@@ -7,7 +7,7 @@ const bitcountPropSingleInk = Bitcount_Prop_Single_Ink({
 
 export default function ChatSdk() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-cyan-200">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="flex flex-col">
         <h1
           className={`text-3xl font-extralight text-black ${bitcountPropSingleInk.className}`}

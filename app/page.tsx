@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 justify-center items-center">
+    <div className="flex flex-1 flex-col gap-4  justify-center items-center">
       <div className="flex flex-col items-center gap-6">
         <h1 className="text-3xl font-semibold leading-10 tracking-tight">
           Andean Ronin

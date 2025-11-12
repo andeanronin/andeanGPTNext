@@ -21,8 +21,10 @@ function ChatMessages({ messages, className }: ChatMessagesProps) {
         >
           <div
             className={`max-w-[70%] p-3 rounded-xl ${
-              message.role === "user" ? "bg-white" : "bg-transparent"
-            } text-black`}
+              message.role === "user" 
+                ? "bg-primary text-primary-foreground" 
+                : "bg-muted text-muted-foreground"
+            }`}
           >
             {<Markdown>{message.content}</Markdown>}
           </div>

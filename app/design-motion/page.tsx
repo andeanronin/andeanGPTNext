@@ -2,15 +2,14 @@
 import { Bitcount_Prop_Single_Ink } from "next/font/google";
 // import { motion } from "motion/react";
 import * as motion from "motion/react-client";
-
 import AppWithStyles from "./bounceToggle";
 import { Switch } from "@/components/ui/switch";
 import LayoutAnimation from "./toggleAnimation";
-import { Button } from "@/components/ui/button";
 const bitcountPropSingleInk = Bitcount_Prop_Single_Ink({
   weight: "400",
   subsets: ["latin"],
 });
+import { FloatingNavDemo } from "../hello/floating-navbar";
 
 const box = {
   width: 100,
@@ -21,8 +20,9 @@ const box = {
 
 export default function DesignMotion() {
   return (
-    <div className="flex flex-col items-center justify-center ">
-      <div className="flex flex-col items-center py-5 pt-10 w-full">
+    <div className="flex flex-col justify-center px-10 gap-5">
+      <FloatingNavDemo></FloatingNavDemo>
+      <div className="flex flex-col w-full mt-15">
         <h1
           className={`text-3xl font-extralight text-black ${bitcountPropSingleInk.className}`}
         >

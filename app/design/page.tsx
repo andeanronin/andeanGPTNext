@@ -26,6 +26,7 @@ import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { useTheme } from "@/components/theme-provider";
 
+import { FloatingNavDemo } from "../hello/floating-navbar";
 // import { NeobrutalismScope } from "@/components/neobrutalism/scope";
 
 const bitcountPropSingleInk = Bitcount_Prop_Single_Ink({
@@ -42,7 +43,7 @@ function ComponentSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-full">
+    <section className="w-full max-w-5xl px-6">
       <h2 className="text-xl font-medium text-foreground mb-6 border-b pb-2">
         {title}
       </h2>
@@ -79,10 +80,12 @@ function DemoRow({
 export default function Design() {
   const { isDark, setIsDark } = useTheme();
   return (
-    <div className="flex justify-center min-h-screen py-10 px-6">
-      <div className="flex flex-col gap-12 w-full max-w-5xl">
+    <div className="flex min-h-screen flex-col items-center py-10 gap-12">
+      <FloatingNavDemo></FloatingNavDemo>
+
+      <div className="flex flex-col gap-12 w-full max-w-5xl px-6">
         {/* Header */}
-        <header className="flex flex-col gap-3 pb-4 border-b">
+        <header className="flex flex-col w-full gap-3 pb-4 border-b">
           <h1
             className={`text-4xl font-extralight text-foreground ${bitcountPropSingleInk.className}`}
           >
