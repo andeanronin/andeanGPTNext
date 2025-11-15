@@ -26,7 +26,6 @@ import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { useTheme } from "@/components/theme-provider";
 
-import { FloatingNavDemo } from "../hello/floating-navbar";
 // import { NeobrutalismScope } from "@/components/neobrutalism/scope";
 
 const bitcountPropSingleInk = Bitcount_Prop_Single_Ink({
@@ -81,8 +80,6 @@ export default function Design() {
   const { isDark, setIsDark } = useTheme();
   return (
     <div className="flex min-h-screen flex-col items-center py-10 gap-12">
-      <FloatingNavDemo></FloatingNavDemo>
-
       <div className="flex flex-col gap-12 w-full max-w-5xl px-6">
         {/* Header */}
         <header className="flex flex-col w-full gap-3 pb-4 border-b">
@@ -117,7 +114,6 @@ export default function Design() {
             </div>
           </DemoRow>
         </ComponentSection>
-
         {/* Standard Buttons */}
         <ComponentSection title="Buttons">
           <DemoRow label="Variants" description="Different button styles">

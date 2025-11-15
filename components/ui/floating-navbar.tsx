@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export const FloatingNav = ({
   navItems,
   className,
+  children,
 }: {
   navItems: {
     name: string;
@@ -18,12 +19,29 @@ export const FloatingNav = ({
     icon?: React.JSX.Element;
   }[];
   className?: string;
+  children?: React.ReactNode;
 }) => {
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(true);
+  const [isScrollable, setIsScrollable] = useState(false);
+
+  useEffect(() => {
+    const checkScrollable = () => {
+      setIsScrollable(
+        document.documentElement.scrollHeight > window.innerHeight
+      );
+    };
+
+    checkScrollable();
+    window.addEventListener("resize", checkScrollable);
+
+    return () => window.removeEventListener("resize", checkScrollable);
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
+    if (!isScrollable) return; // Don't apply scroll logic if page isn't scrollable
+
     // Check if current is not undefined and is a number
     if (typeof current === "number") {
       const direction = current! - scrollYProgress.getPrevious()!;
@@ -77,6 +95,7 @@ export const FloatingNav = ({
             </a>
           )
         )}
+        {children}
         <button className="border text-sm font-medium relative border-border text-foreground px-4 py-2 rounded-full hover:bg-accent transition-colors">
           <span>Login</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-linear-to-r from-transparent via-primary to-transparent h-px" />
